@@ -56,9 +56,14 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'bookings@webjetexclusives.com.au'),
+        'name' => env('MAIL_FROM_NAME', 'Webjet Exclusives'),
     ],
+
+    //  'from' => [
+    //     'address' => 'bookings@webjetexclusives.com.au',
+    //     'name' => 'Webjet Exclusives',
+    // ],
 
     /*
     |--------------------------------------------------------------------------

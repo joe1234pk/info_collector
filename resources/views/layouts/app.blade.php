@@ -13,6 +13,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+   (function(){
+      emailjs.init("user_WJWJ9JBOIi6PSyee1V1PL");
+   })();
+</script>
 </head>
 <body>
     <div id="app">
