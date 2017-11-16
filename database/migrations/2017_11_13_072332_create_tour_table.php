@@ -15,9 +15,9 @@ class CreateTourTable extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamp('departure_date');
-            $table->string('departure_city');
-            $table->string('bedding_config');
+            $table->string('departure_city')->nullable();
+            $table->string('departure_date')->nullable();
+            $table->string('bedding_config')->default('single,twin,double,king');
         });
     }
 

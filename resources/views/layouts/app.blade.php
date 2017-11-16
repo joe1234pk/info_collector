@@ -54,7 +54,8 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                <!-- data-toggle="dropdown" -->
+                                <a href="" class="dropdown-toggle"  role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -88,76 +89,15 @@
 <script>
     $.fn.datepicker.defaults.format = "yyyy-mm-dd";
     $.fn.datepicker.defaults.autoclose = true;
-      function NewPassengerForm(){
-    var string = 
-    '<div class="well well-sm passenger_wrapper">' 
-    +'<div class="row">'
-    +' <div class="col-lg-4"><div class="form-group">'
-    +'<label class="col-lg-4 control-label">Given name:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[given_name][]" value="" required="true"></div></div></div>'
-    + '<div class="col-lg-4">'
-    +'<div class="form-group"><label class="col-lg-4 control-label">Middle name:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[mid_name][]" placeholder="N/A" value=""></div></div></div>'
-    + '<div class="col-lg-4">'
-    +'<div class="form-group"><label class="col-lg-4 control-label">Surname:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[surname][]" required="true" value=""></div></div></div></div>'
-    +'<div class="row">'
-    +'<div class="col-lg-6"><div class="form-group">'
-    +'<label class="col-lg-4 control-label">Title: </label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[title][]" required="true" value=""></div></div></div>'
-    +'<div class="col-lg-6">'
-    +'<div class="form-group"><label class="col-lg-4 control-label"> Gender:</label>'
-    +'<div class="col-lg-8"><select class="form-control" required="true"  name="new_passengers[gender][]" value=""><option value="male">Male</option><option value="female">female</option></select></div></div></div></div>'
-    +'<div class="row">'
-    +'<div class="col-lg-6"><div class="form-group">'
-    +'<label class="col-lg-4 control-label">Email: </label>'
-    +'<div class="col-lg-8"><input class="form-control"  required="true" name="new_passengers[email][]" value=""></div></div></div>'
-    +'<div class="col-lg-6">'
-    +'<div class="form-group"><label class="col-lg-4 control-label"> Mobile:</label>'
-    +'<div class="col-lg-8"><input class="form-control" required="true" name="new_passengers[mobile][]" value=""></div></div></div></div>'
-    +'<div class="row">'
-    +'<div class="col-lg-6"><div class="form-group">'
-    +'<label class="col-lg-4 control-label">Date of birth:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[birth_date][]" required="true" value="" data-provide="datepicker"></div></div></div>'
-    +'<div class="col-lg-6"><div class="form-group">'
-    +'<label class="col-lg-4 control-label">Emergency contact information:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[emgcy_contact][]" required="true" value="" ></div></div></div></div>'
-    +'<div class="passport-block"><div class="row">'
-    +'<div class="col-lg-6"><div class="form-group">'
-    +'<label class="col-lg-4 control-label">Passport number: </label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[passport_num][]" required="true" value=""></div></div></div>'
-    +'<div class="col-lg-6">'
-    +'<div class="form-group"><label class="col-lg-4 control-label">Passport nationality:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[passport_nationality][]" required="true" value=""></div></div></div></div>'
-    +'<div class="row">'
-    +' <div class="col-lg-4"><div class="form-group">'
-    +'<label class="col-lg-4 control-label">Date of issue:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[passport_date_of_issue][]" required="true" value="" data-provide="datepicker"></div></div></div>'
-    + '<div class="col-lg-4">'
-    +'<div class="form-group"><label class="col-lg-4 control-label">Expiry date:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[passport_expiry_date][]" required="true" value="" data-provide="datepicker"></div></div></div>'
-    + '<div class="col-lg-4">'
-    +'<div class="form-group"><label class="col-lg-4 control-label">Place of birth:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[place_of_birth][]" required="true"  value=""></div></div></div></div></div>'
-     +'<div class="address-block"><div class="row">'
-    +'<div class="col-lg-8"><div class="form-group">'
-    +'<label class="col-lg-4 control-label">Resident address:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[address][]" value="" ></div></div></div>'
-    +'<div class="col-lg-4"><div class="form-group">'
-    +'<label class="col-lg-4 control-label">Suburb:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[address_sub][]" value="" ></div></div></div></div>'
-    +'<div class="row">'
-    +'<div class="col-lg-6"><div class="form-group">'
-    +'<label class="col-lg-4 control-label">State:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[address_state][]" value=""></div></div></div>'
-    +'<div class="col-lg-6"><div class="form-group">'
-    +'<label class="col-lg-4 control-label">Postcode:</label>'
-    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[address_postcode][]" value="" ></div></div></div></div></div>'
-    +'<div class="row">'
-    +'<div class="col-lg-2 pull-right"><a href="javascript:void(0);" class="btn btn-danger remove_passenger">Remove</a></div></div></div>'
-    return string ;
-}
+      
+function NewDateForm (){
+   var formString = '<tr class="date_wrapper"><td>'
+   +'<input name="new_dates[]" class="form-control datepicker" value="" data-provide="datepicker">'
+   +'</td><span class="help-block"></span><td>'
+   +'<a href="javascript:void(0);" class="btn btn-danger remove_date">Remove</a</td></tr>' 
+   return formString;               
 
+ } 
 </script>
 
 </body>

@@ -20,12 +20,22 @@
           @endif            
           <fieldset style="margin-top: 30px;">
 
+            <div id="basic-setting" class='col-lg-6'>
             <div class="form-group">
               <label class="col-lg-2 control-label">
                 Tour Name:
               </label>
-              <div class="col-lg-4 " style="text-align: left" >
-               <input type="text" name='name' class='form-control' value ="{{$tour->tour_name}}" disabled ></input> 
+              <div class="col-lg-10" style="text-align: left" >
+               <input type="text" name='name' class='form-control' value ="{{$tour->tour_name}}" disabled >
+              </div>
+            </div>
+
+             <div class="form-group">
+              <label class="col-lg-2 control-label">
+                voucher:
+              </label>
+              <div class="col-lg-10" style="text-align: left" >
+               <input type="text" name='voucher' class='form-control' value =""  >
               </div>
             </div>
   
@@ -34,17 +44,77 @@
                 Tour Date:
               </label>
                
-               <div class="col-lg-4 " style="text-align: left">
-                 <input type="text" name='product_date' class='form-control' value ="
-                 {{$tour->departure_date}}" disabled > 
+               <div class="col-lg-10" style="text-align: left">
+      <!--            <input type="text" name='product_date' class='form-control' value ="
+                 {{$tour->departure_date}}">  -->
 
-               <!--  <select name="tour_date" class="form-control">
-                 <option value=""></option>
+                <select name="tour_date" class="form-control">
+                  @foreach($tour->dates  as $date)
+                 <option value="{{$date}}">{{$date}}</option>
+                 @endforeach
                 </select>
-                <span class="help-block"></span> -->
+                <span class="help-block"></span>
               </div>
-            
           </div>
+          </div>
+          <div id='customer-prefered-config' class="col-md-6">
+            <div class="form-group">
+              <label class="col-lg-3 control-label">
+                Early arrival
+              </label>
+              <div class="col-lg-9 " style="text-align: left" >
+               <input type="text" name='early_arrival' class='form-control' value ="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">
+                Stay behind:
+              </label>
+              <div class="col-lg-6 " style="text-align: left;padding-left:0" >
+              <span class="col-lg-8"><input type="text" name='stay_behind' class='form-control' value =""></span>
+              <span class="col-lg-4 control-label" style="padding-left: 0" > nights</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">
+                Preferred airline:
+              </label>
+              <div class="col-lg-4 " style="text-align: left" >
+               <input type="text" name='preferred_airline' class='form-control' value ="">
+              </div>
+            </div>
+            
+
+            <div class="form-group">
+              <label class="col-lg-3 control-label">
+                Preferred class of travel:
+              </label>
+               <div class="col-lg-4 " style="text-align: left">
+                <select name="travel_class" class="form-control">
+                 <option value="economy" selected>Economy</option>
+                 <option value="business">Business</option>
+                </select>
+              </div>
+          </div>
+          
+                <div class="form-group">
+              <label class="col-lg-3 control-label">
+                Bedding configuration:
+              </label>
+               <div class="col-lg-4 " style="text-align: left">
+                <select name="bedding_config" class="form-control">
+                <!--  <option value="single">Single</option>
+                 <option value="double">Double</option>
+                 <option value="twin">Twin</option>
+                 <option value="king">King</option> -->
+                 @foreach($tour->bedding_availability as $bed)
+                 <option value="{{$bed}}">{{$bed}}</option>
+                 @endforeach()
+                </select>
+              </div>
+          </div>
+      </div>
             <div class="form-group">
               
               <div class="col-lg-offset-2 col-lg-4">
@@ -122,6 +192,76 @@
             
 });
 }); 
+
+ function NewPassengerForm(){
+    var string = 
+    '<div class="well well-sm passenger_wrapper">' 
+    +'<div class="row">'
+    +' <div class="col-lg-4"><div class="form-group">'
+    +'<label class="col-lg-4 ">Given name:</label>'
+    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[given_name][]" value="" required="true"></div></div></div>'
+    + '<div class="col-lg-4">'
+    +'<div class="form-group"><label class="col-lg-4 ">Middle name:</label>'
+    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[mid_name][]" placeholder="N/A" value=""></div></div></div>'
+    + '<div class="col-lg-4">'
+    +'<div class="form-group"><label class="col-lg-4 ">Surname:</label>'
+    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[surname][]" required="true" value=""></div></div></div></div>'
+    +'<div class="row">'
+    +'<div class="col-lg-6"><div class="form-group">'
+    +'<label class="col-lg-4 ">Title: </label>'
+    +'<div class="col-lg-8"><select class="form-control" name="new_passengers[title][]" required="true" value=""><option value="mr">Mr</option><option value="mrs">Mrs</option><option value="miss">Miss</option><option value="sir">Sir</option><option value="madam">Madam</option><option value="dr">Dr</option></select></div></div></div>'
+    +'<div class="col-lg-6">'
+    +'<div class="form-group"><label class="col-lg-4 "> Gender:</label>'
+    +'<div class="col-lg-8"><select class="form-control" required="true"  name="new_passengers[gender][]" value=""><option value="male">Male</option><option value="female">Female</option></select></div></div></div></div>'
+    +'<div class="row">'
+    +'<div class="col-lg-6"><div class="form-group">'
+    +'<label class="col-lg-4 ">Email: </label>'
+    +'<div class="col-lg-8"><input class="form-control"  required="true" name="new_passengers[email][]" value=""></div></div></div>'
+    +'<div class="col-lg-6">'
+    +'<div class="form-group"><label class="col-lg-4 "> Mobile:</label>'
+    +'<div class="col-lg-8"><input class="form-control" required="true" name="new_passengers[mobile][]" value=""></div></div></div></div>'
+    +'<div class="row">'
+    +'<div class="col-lg-6"><div class="form-group">'
+    +'<label class="col-lg-4 ">Date of birth:</label>'
+    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[birth_date][]" required="true" value="" data-provide="datepicker"></div></div></div>'
+    +'<div class="col-lg-6"><div class="form-group">'
+    +'<label class="col-lg-4 ">Emergency contact information:</label>'
+    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[emgcy_contact][]" required="true" value="" ></div></div></div></div>'
+    +'<div class="passport-block"><h4>Passport information</h4><hr><div class="row">'
+    +'<div class="col-lg-6"><div class="form-group">'
+    +'<label class="col-lg-4 ">Passport number: </label>'
+    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[passport_num][]" required="true" value=""></div></div></div>'
+    +'<div class="col-lg-6">'
+    +'<div class="form-group"><label class="col-lg-3">Passport nationality:</label>'
+    +'<div class="col-lg-9"><input class="form-control" name="new_passengers[passport_nationality][]" required="true" value=""></div></div></div></div>'
+    +'<div class="row">'
+    +' <div class="col-lg-4"><div class="form-group">'
+    +'<label class="col-lg-4 ">Date of issue:</label>'
+    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[passport_date_of_issue][]" required="true" value="" data-provide="datepicker"></div></div></div>'
+    + '<div class="col-lg-4">'
+    +'<div class="form-group"><label class="col-lg-4 ">Expiry date:</label>'
+    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[passport_expiry_date][]" required="true" value="" data-provide="datepicker"></div></div></div>'
+    + '<div class="col-lg-4">'
+    +'<div class="form-group"><label class="col-lg-4 ">Place of birth:</label>'
+    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[place_of_birth][]" required="true"  value=""></div></div></div></div></div>'
+     +'<div class="address-block"><h4>Pensonal residential details</h4><hr><div class="row">'
+    +'<div class="col-lg-8"><div class="form-group">'
+    +'<label class="col-lg-3 ">Resident address:</label>'
+    +'<div class="col-lg-9"><input class="form-control" name="new_passengers[address][]" value="" ></div></div></div>'
+    +'<div class="col-lg-4"><div class="form-group">'
+    +'<label class="col-lg-4 ">Suburb:</label>'
+    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[address_sub][]" value="" ></div></div></div></div>'
+    +'<div class="row">'
+    +'<div class="col-lg-6"><div class="form-group">'
+    +'<label class="col-lg-4 ">State:</label>'
+    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[address_state][]" value=""></div></div></div>'
+    +'<div class="col-lg-6"><div class="form-group">'
+    +'<label class="col-lg-4 ">Postcode:</label>'
+    +'<div class="col-lg-8"><input class="form-control" name="new_passengers[address_postcode][]" value="" ></div></div></div></div></div>'
+    +'<div class="row">'
+    +'<div class="col-lg-2 pull-right"><a href="javascript:void(0);" class="btn btn-danger remove_passenger">Remove</a></div></div></div>'
+    return string ;
+}
 
 </script>
 @endsection

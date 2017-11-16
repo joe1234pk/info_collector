@@ -12,10 +12,12 @@ class PassengerController extends Controller
 {
     //
 
-    public function create(){
+    public function create($id){
 
-    	
-        $tour = Tour::find(1);
+        $tour = Tour::find($id);
+        $tour->dates = explode(',',$tour->departure_date);
+        $tour->bedding_availability = explode(',',$tour->bedding_config);
+       //return $tour;
         return view('passenger_info_form')->with(compact('tour'));
     }
 
@@ -28,12 +30,16 @@ class PassengerController extends Controller
     	$data =[
 		'deal' => $tour->tour_name,
 		'product' => $tour->tour_description,
-		'bedding_config' =>$tour->bedding_config,
-        'departure_date' => $tour->departure_date
+		'bedding_config' =>$request->bedding_config,
+        'departure_date' => $request->tour_date,
+        'voucher' => $request->voucher,
+        'early_arrival' => $request->early_arrival,
+        'stay_night' => $request->stay_night,
+        'preferred_airline' => $request->preferred_airline,
+        'travel_class' => $request->travel_class,
 
 			];
 
-	     // $tour=['deal'=>'1','product'=>'1'];
          $passengers = [];
         if(!empty($request->new_passengers)){
           $new_passengers = $request->new_passengers;
@@ -67,10 +73,12 @@ class PassengerController extends Controller
 
 	Mail::send('emails.email',$data,function($m){
 
-		$m->to('joesitu123@gmail.com')->subject('[Tomato Travel] Booking Notification - '.date("F j, Y"));
+		$m->to('operations@tomatotravel.com.au','joesitu123@gmail.com')->subject('[Tomato Travel] Booking Notification - '.date("F j, Y"));
 		$m->from('bookings@webjetexclusives.com.au','Webjet Exclusives');
 		//Webjet Exclusives <bookings@webjetexclusives.com.au>
-	});
-    	//return $data;
+	   return  'Details have been submitted and mailed. Thanks for choosing Tomato Travel.';
+
+    });
+    	//return 'Fail';
     }
 }

@@ -13,17 +13,25 @@ use App\Mail\PassengerDetails;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return redirect()->route('tour');
 });
 
 Auth::routes();
 
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
-
-
-Route::get('/form','PassengerController@create')->name('passenger.create');
-
+Route::get('/form/{id}','PassengerController@create')->name('passenger.create');
 Route::post('/form/save','PassengerController@save_booking')->name('passenger.save');
+
+
+Route::get('/tour','ProductController@index')->name('tour');
+Route::get('/tour/edit/{id}','ProductController@edit')->name('tour.edit');
+Route::get('/tour/create','ProductController@create')->name('tour.create');
+Route::post('/tour/save','ProductController@save')->name('tour.save');
+Route::post('/tour/add','ProductController@add')->name('tour.add');
 
 Route::get('/send', function(){
 	
