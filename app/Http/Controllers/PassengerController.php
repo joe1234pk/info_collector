@@ -73,7 +73,7 @@ class PassengerController extends Controller
 
 	Mail::send('emails.email',$data,function($m){
 
-		$m->to('operations@tomatotravel.com.au','joesitu123@gmail.com')->subject('[Tomato Travel] Booking Notification - '.date("F j, Y"));
+		$m->to('operations@tomatotravel.com.au','joesitu123@gmail.com')->subject('[Webjet Exclusives] Booking Notification - '.date("F j, Y"));
 		$m->from('bookings@webjetexclusives.com.au','Webjet Exclusives');
 		//Webjet Exclusives <bookings@webjetexclusives.com.au>
 	   return  'Details have been submitted and mailed. Thanks for choosing Tomato Travel.';
