@@ -65,3 +65,4 @@ class PassengerDetails extends Mailable
          return view('emails.email')->with(compact('tour','passengers'));
     }
 }
+}
